@@ -1,6 +1,9 @@
 package com.tecdesoftware.market.persistance.entity;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDateTime;
 
 @Entity
 
@@ -18,7 +21,7 @@ public class Compra {
     @Column(name="id_cliente")
     private Integer idCategoria;
 
-    private String fecha;
+    private LocalDateTime fecha;
 
     @Column(name="medio_pago")
     private Double medioPago;
@@ -52,11 +55,11 @@ public class Compra {
         this.idCategoria = idCategoria;
     }
 
-    public String getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
