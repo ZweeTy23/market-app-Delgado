@@ -1,4 +1,4 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
 import jakarta.persistence.*;
 
@@ -28,6 +28,12 @@ public class Producto {
     private Integer cantidadStock;
 
     private Boolean estado;
+
+    //Relacion con la entidad cliente: Muchas compras a un cliente
+    @ManyToOne
+    //No quiero que se modifique la entidad cliente, solo relacionarla
+    @JoinColumn (name="id_categoria", insertable=false, updatable=false)
+    private Categoria categoria;
 
     public Integer getIdProducto() {
         return idProducto;

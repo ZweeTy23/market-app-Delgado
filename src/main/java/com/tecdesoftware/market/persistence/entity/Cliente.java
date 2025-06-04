@@ -1,7 +1,9 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="cliente")
@@ -23,6 +25,9 @@ private String direccion;
     @Column(name="correo_electronico")
     private String correoElectronico;
 
+    //Aqui se conecta con la entidad compra
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
     public Integer getId() {
         return id;

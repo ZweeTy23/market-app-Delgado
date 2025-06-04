@@ -1,6 +1,8 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 
@@ -21,6 +23,10 @@ public class Categoria {
     public Integer getIdCategoria() {
         return idCategoria;
     }
+
+    //Aqui se conecta con la entidad compra
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;

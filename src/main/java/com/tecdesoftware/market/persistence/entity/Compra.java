@@ -1,9 +1,9 @@
-package com.tecdesoftware.market.persistance.entity;
+package com.tecdesoftware.market.persistence.entity;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 
@@ -26,6 +26,15 @@ public class Compra {
     @Column(name="medio_pago")
     private Double medioPago;
 
+
+    //Relacion con la entidad cliente: Muchas compras a un cliente
+    @ManyToOne
+    //No quiero que se modifique la entidad cliente, solo relacionarla
+    @JoinColumn (name="id_cliente", insertable=false, updatable=false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy="producto")
+    private List<CompraProducto> productos;
 
     private Integer comentario;
 
