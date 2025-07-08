@@ -1,18 +1,16 @@
 package com.tecdesoftware.market.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
-
-
 public class CompraProductoPK {
 
-    @Column(name="id_compra")
+    @Column (name = "id_compra")
     private Integer idCompra;
 
-    @Column(name="id_producto")
-    private Integer idProducto;
-
+    @Column (name = "id_producto")
+    private Integer Producto;
 
     public Integer getIdCompra() {
         return idCompra;
@@ -22,11 +20,11 @@ public class CompraProductoPK {
         this.idCompra = idCompra;
     }
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Integer getProducto() {
+        return Producto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Integer producto) {
+        Producto = producto;
     }
 }

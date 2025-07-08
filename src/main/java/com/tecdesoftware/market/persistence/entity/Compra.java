@@ -6,62 +6,57 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-
-@Table (name="compras")
-
+@Table(name = "compras")
 public class Compra {
 
-    @Id//Llave primaria
-    //Hace el ID autoincremental
+    @Id//LLave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id_compra")
+
+    @Column(name = "id_compra")
     private Integer idCompra;
 
-    private String nombre;
-    @Column(name="id_cliente")
-    private Integer idCategoria;
+    @Column(name = "id_cliente")
+    private Integer idCliente;
 
     private LocalDateTime fecha;
 
-    @Column(name="medio_pago")
-    private Double medioPago;
+    @Column(name = "medio_pago")
+    private String medioPago;
 
-
-    //Relacion con la entidad cliente: Muchas compras a un cliente
-    @ManyToOne
-    //No quiero que se modifique la entidad cliente, solo relacionarla
-    @JoinColumn (name="id_cliente", insertable=false, updatable=false)
-    private Cliente cliente;
-
-    @OneToMany(mappedBy="producto")
-    private List<CompraProducto> productos;
-
-    private Integer comentario;
+    private String comentario;
 
     private Boolean estado;
 
-    public Integer getIdCompra() {
-        return idCompra;
+    @ManyToOne
+    @JoinColumn (name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "compra")
+    private List<CompraProducto> compraProductos;
+
+
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setIdCompra(Integer idCompra) {
-        this.idCompra = idCompra;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
-    public Integer getIdCategoria() {
-        return idCategoria;
+    public String getMedioPago() {
+        return medioPago;
     }
 
-    public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setMedioPago(String medioPago) {
+        this.medioPago = medioPago;
     }
 
     public LocalDateTime getFecha() {
@@ -72,27 +67,22 @@ public class Compra {
         this.fecha = fecha;
     }
 
-    public Double getMedioPago() {
-        return medioPago;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setMedioPago(Double medioPago) {
-        this.medioPago = medioPago;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Integer getComentario() {
-        return comentario;
+    public Integer getIdCompra() {
+        return idCompra;
     }
 
-    public void setComentario(Integer comentario) {
-        this.comentario = comentario;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
+    public void setIdCompra(Integer idCompra) {
+        this.idCompra = idCompra;
     }
 }
+
+
+
