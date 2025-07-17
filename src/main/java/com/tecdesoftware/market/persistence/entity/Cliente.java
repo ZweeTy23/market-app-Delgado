@@ -5,25 +5,37 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table (name = "clientes" )
+@Table(name = "clientes")
 public class Cliente {
 
     @Id
+    @Column(name = "id_cliente")
+    private String idCliente;
 
     private String nombre;
 
-    @Column (name = "apellidos")
+    @Column(name = "apellidos")
     private String apellido;
 
     private Long celular;
 
     private String direccion;
 
-    @Column (name = "correo_electronico")
+    @Column(name = "correo_electronico")
     private String correoElectronico;
 
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
+
+    // Getters y Setters
+
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
 
     public String getNombre() {
         return nombre;
@@ -63,5 +75,13 @@ public class Cliente {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
     }
 }

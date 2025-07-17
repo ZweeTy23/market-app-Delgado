@@ -14,30 +14,32 @@ import java.util.Optional;
 @Repository
 public class CompraRepository implements PurchaseRepository {
 
-    @Autowired
-    private CompraRepository compraRepository;
+    private final CompraCrudRepository compraCrudRepository;
+    private final PurchaseMapper mapper;
 
     @Autowired
-    private PurchaseMapper mapper;
-    @Autowired
-    private CompraCrudRepository compraCrudRepository;
+    public CompraRepository(CompraCrudRepository compraCrudRepository, PurchaseMapper mapper) {
+        this.compraCrudRepository = compraCrudRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<Purchase> getAll() {
-        return mapper.toPurchases((List<Compra>) compraCrudRepository.findAll());
+        List<Compra> compras = (List<Compra>) compraCrudRepository.findAll();
+        return mapper.toPurchases(compras);
     }
 
     @Override
     public Optional<List<Purchase>> getByClient(String clientId) {
         return compraCrudRepository.findByIdCliente(clientId)
-                .map(compras -> mapper.toPurchases(compras));
+                .map(mapper::toPurchases);
     }
 
     @Override
     public Purchase save(Purchase purchase) {
         Compra compra = mapper.toCompra(purchase);
-        compra.getCompraProductos().forEach(compraProducto -> compraProducto.setCompra(compra));
-        return mapper.toPurchase(compraCrudRepository.save(compra));
-
+        compra.getCompraProductos().forEach(cp -> cp.setCompra(compra));
+        Compra saved = compraCrudRepository.save(compra);
+        return mapper.toPurchase(saved);
     }
 }

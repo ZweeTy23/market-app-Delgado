@@ -1,74 +1,72 @@
-package com.tecdesoftware.market.persistence.entity;
+    package com.tecdesoftware.market.persistence.entity;
 
-import jakarta.persistence.*;
+    import jakarta.persistence.*;
 
-@Entity
-@Table (name= "compras_productos")
-public class CompraProducto {
+    @Entity
+    @Table(name = "compras_productos")
+    public class CompraProducto {
 
-    @EmbeddedId
-    private CompraProductoPK id;
+        @EmbeddedId
+        private CompraProductoPK id;
 
-    private String cantidad;
+        private Integer cantidad;
+        private Double total;
+        private String estado;
 
-    private String total;
+        @ManyToOne
+        @MapsId("idCompra")
+        @JoinColumn(name = "id_compra", insertable = false, updatable = false)
+        private Compra compra;
 
-    private Boolean estado;
+        @ManyToOne
+        @JoinColumn(name = "id_producto", insertable = false, updatable = false)
+        private Producto producto;
 
-    @ManyToOne
-    @MapsId("idCompra")
-    @JoinColumn(name = "id_compra", insertable = false, updatable = false)
-    private Compra compra;
+        public CompraProductoPK getId() {
+            return id;
+        }
 
-    @ManyToOne
-    @JoinColumn (name = "id_producto", insertable = false, updatable = false)
-    private Producto producto;
+        public void setId(CompraProductoPK id) {
+            this.id = id;
+        }
 
-    public CompraProductoPK getId() {
-        return id;
+        public Integer getCantidad() {
+            return cantidad;
+        }
+
+        public void setCantidad(Integer cantidad) {
+            this.cantidad = cantidad;
+        }
+
+        public Double getTotal() {
+            return total;
+        }
+
+        public void setTotal(Double total) {
+            this.total = total;
+        }
+
+        public String getEstado() {
+            return estado;
+        }
+
+        public void setEstado(String estado) {
+            this.estado = estado;
+        }
+
+        public Compra getCompra() {
+            return compra;
+        }
+
+        public void setCompra(Compra compra) {
+            this.compra = compra;
+        }
+
+        public Producto getProducto() {
+            return producto;
+        }
+
+        public void setProducto(Producto producto) {
+            this.producto = producto;
+        }
     }
-
-    public void setId(CompraProductoPK id) {
-        this.id = id;
-    }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
-    public Compra getCompra() {
-        return compra;
-    }
-
-    public void setCompra(Compra compra) {
-        this.compra = compra;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-}

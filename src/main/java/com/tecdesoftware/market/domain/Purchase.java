@@ -3,7 +3,7 @@ package com.tecdesoftware.market.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Purchase {
+public class  Purchase {
     private int purchaseId;
     private String clientId;
     private LocalDateTime date;

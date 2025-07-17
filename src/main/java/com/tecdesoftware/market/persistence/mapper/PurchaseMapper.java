@@ -9,24 +9,25 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper (componentModel = "spring", uses = {PurchaseItemMapper.class})
+@Mapper(componentModel = "Spring", uses = { PurchaseItemMapper.class } )
 public interface PurchaseMapper {
-
+    //Mapeo de las compras
     @Mappings({
             @Mapping(source = "idCompra", target = "purchaseId"),
-            @Mapping(source = "idCliente", target = "clienteId"),
+            @Mapping(source = "idCliente", target = "clientId"),
             @Mapping(source = "fecha", target = "date"),
             @Mapping(source = "medioPago", target = "paymentMethod"),
             @Mapping(source = "comentario", target = "comment"),
             @Mapping(source = "estado", target = "state"),
-            @Mapping(source = "productos", target = "items")
+            @Mapping(source = "compraProductos", target = "item"),
+
+
     })
-
+    //una compra
     Purchase toPurchase(Compra compra);
-            List<Purchase> toPurchases(List<Compra> compras);
-
-            @InheritInverseConfiguration
-            @Mapping(target="cliente", ignore = true)
+    //lista de compras
+    List<Purchase> toPurchases(List<Compra> compras);
+    @InheritInverseConfiguration
     Compra toCompra(Purchase purchase);
 
 }

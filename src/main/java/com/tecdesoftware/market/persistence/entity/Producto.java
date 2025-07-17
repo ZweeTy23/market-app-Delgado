@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "productos")
 public class Producto {
 
+
     @Id//LLave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -26,6 +27,7 @@ public class Producto {
     @Column(name = "cantidad_stock")
     private Integer cantidadStock;
 
+    @Column(name = "estado")
     private Boolean estado;
 
     @ManyToOne
@@ -96,6 +98,3 @@ public class Producto {
         this.categoria = categoria;
     }
 }
-
-
-
