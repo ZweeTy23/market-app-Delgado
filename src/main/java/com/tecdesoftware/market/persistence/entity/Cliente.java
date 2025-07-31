@@ -27,6 +27,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
+    private String contrasena;
+
     // Getters y Setters
 
     public String getIdCliente() {
@@ -83,5 +85,13 @@ public class Cliente {
 
     public void setCompras(List<Compra> compras) {
         this.compras = compras;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
