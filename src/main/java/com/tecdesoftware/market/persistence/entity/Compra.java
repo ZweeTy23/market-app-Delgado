@@ -6,38 +6,35 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-
-@Table (name="compras")
-
+@Table(name = "compras")
 public class Compra {
 
-    @Id//Llave primaria
-    //Hace el ID autoincremental
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id_compra")
     private Integer idCompra;
 
     @Column(name = "id_cliente")
-    private String idCliente;
+    private String idCliente;  // Cambiar a String
 
-    private LocalDateTime fecha;
+    @Column(name = "fecha")
+    private LocalDateTime fechaCompra;
 
     @Column(name = "medio_pago")
-    private String medioPago;
+    private String medioPago;  // Cambiar a String (char(1))
 
-    private String comentario;
+    @Column(name = "comentario")
+    private String comentario; // Cambiar a String
 
-    private String estado;
+    @Column(name = "estado")
+    private String estado;     // Cambiar a String (char(1))
 
-    //Relacion con la entidad cliente: Muchas compras a un cliente
     @ManyToOne
-    // No quiero que se modifique la entidad cliente, solo relacionarla
-    @JoinColumn (name="id_cliente", insertable=false, updatable=false)
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "compra")
-    private List<CompraProducto> compraProductos;
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
+    private List<CompraProducto> productos;
 
     public Integer getIdCompra() {
         return idCompra;
@@ -55,12 +52,12 @@ public class Compra {
         this.idCliente = idCliente;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getFechaCompra() {
+        return fechaCompra;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaCompra(LocalDateTime fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
     public String getMedioPago() {
@@ -95,11 +92,11 @@ public class Compra {
         this.cliente = cliente;
     }
 
-    public List<CompraProducto> getCompraProductos() {
-        return compraProductos;
+    public List<CompraProducto> getProductos() {
+        return productos;
     }
 
-    public void setCompraProductos(List<CompraProducto> compraProductos) {
-        this.compraProductos = compraProductos;
+    public void setProductos(List<CompraProducto> productos) {
+        this.productos = productos;
     }
 }

@@ -12,7 +12,6 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    // Inyección de dependencias por constructor
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -33,10 +32,14 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public boolean delete(int productId) {
-        return getProduct(productId).map(product -> {
+    public boolean delete(int productId){
+        //Verificar si el producto existe
+        if (getProduct(productId).isPresent()){
             productRepository.delete(productId);
             return true;
-        }).orElse(false);
+        } else {
+            return false;
+        }
     }
+
 }

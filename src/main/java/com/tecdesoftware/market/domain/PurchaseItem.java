@@ -5,7 +5,6 @@ public class PurchaseItem {
     private int quantity;
     private double total;
     private boolean active;
-    private int purchaseId;
 
     public int getProductId() {
         return productId;
@@ -31,20 +30,11 @@ public class PurchaseItem {
         this.total = total;
     }
 
-    public Boolean isActive() {
+    public boolean isActive() {
         return active;
     }
 
-
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public int getPurchaseId() {
-        return purchaseId;
-    }
-
-    public void setPurchaseId(int purchaseId) {
-        this.purchaseId = purchaseId;
     }
 }

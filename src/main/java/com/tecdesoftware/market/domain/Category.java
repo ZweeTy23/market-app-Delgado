@@ -17,8 +17,8 @@ public class Category {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategory(String catgeory) {
+        this.category = catgeory;
     }
 
     public boolean isActive() {
@@ -27,6 +27,5 @@ public class Category {
 
     public void setActive(boolean active) {
         this.active = active;
-
     }
 }

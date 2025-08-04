@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name= "clientes")
 
-    @Id
-    @Column(name = "id_cliente")
-    private String idCliente;
+public class Cliente {
+    @Id //Indica que es PK
+    //Ejemplo que no lleva: @GeneretValue
+
+    private String id;
 
     private String nombre;
 
@@ -18,25 +19,25 @@ public class Cliente {
     private String apellido;
 
     private Long celular;
+    //Long significa que le vamos a pasar un dato largo
 
     private String direccion;
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Compra> compras;
+    //Aquí se conecta con la entidad Compra
+    @OneToMany(mappedBy = "cliente" )
+    private List<Compra> compra;
 
     private String contrasena;
 
-    // Getters y Setters
-
-    public String getIdCliente() {
-        return idCliente;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -77,14 +78,6 @@ public class Cliente {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
-    }
-
-    public List<Compra> getCompras() {
-        return compras;
-    }
-
-    public void setCompras(List<Compra> compras) {
-        this.compras = compras;
     }
 
     public String getContrasena() {
